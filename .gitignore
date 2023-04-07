@@ -1,0 +1,10 @@
+*.pth
+**/__pycache__/**
+.ipynb_checkpoints/
+**/.mypy_cache/*
+.mypy_cache/*
+.vscode
+**/weights/**
+**/output/**
+**/predictions/**
+**/wandb/**
