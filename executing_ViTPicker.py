@@ -51,7 +51,7 @@ python3 main.py --dataset_file micrograph --data_path /media/ashwin/data2/ViTPic
 python3 main.py   
 
 python3 main.py --dataset_file micrograph --data_path /media/ashwin/data2/ViTPicker_data/10_3_json_data_no_coord_missing --output_dir output/output11 --resume weights/detr-r50-e632da11.pth
-python3 main.py --dataset_file micrograph --data_path /bml/ashwin/ViTPicker/train_val_data --output_dir output/output5dataset --output_dir output/222 --resume weights/detr-r50-e632da11.pth
+python3 main.py --dataset_file micrograph --data_path /bml/ashwin/ViTPicker/train_val_data --output_dir output/output5dataset --resume weights/detr-r50-e632da11.pth
 
 --small 
 python3 main.py --dataset_file micrograph --data_path /media/ashwin/data2/ViTPicker_data/detr_train_val_data_coord_missing --output_dir output/output_test_with_missing_coord

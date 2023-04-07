@@ -1,5 +1,5 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
-import config_DETR_multicom
+import config_DETR
 import argparse
 
 import datetime
@@ -20,15 +20,15 @@ from models import build_model
 import wandb
 
 # start a new wandb run to track this script
-wandb.init(name = config_DETR_multicom.ARCHITECTURE_NAME)
+wandb.init(name = config_DETR.ARCHITECTURE_NAME)
 
 def get_args_parser():
     parser = argparse.ArgumentParser('Set transformer detector', add_help=False)
     parser.add_argument('--lr', default=1e-4, type=float)
     parser.add_argument('--lr_backbone', default=1e-5, type=float)
-    parser.add_argument('--batch_size', default=config_DETR_multicom.BATCH_SIZE, type=int)
+    parser.add_argument('--batch_size', default=config_DETR.BATCH_SIZE, type=int)
     parser.add_argument('--weight_decay', default=1e-4, type=float)
-    parser.add_argument('--epochs', default=config_DETR_multicom.NUM_EPOCHS, type=int)
+    parser.add_argument('--epochs', default=config_DETR.NUM_EPOCHS, type=int)
     parser.add_argument('--lr_drop', default=200, type=int)
     parser.add_argument('--clip_max_norm', default=0.1, type=float,
                         help='gradient clipping max norm')
@@ -85,16 +85,16 @@ def get_args_parser():
 
     # dataset parameters
     parser.add_argument('--dataset_file', default='micrograph')
-    parser.add_argument('--data_path', default= config_DETR_multicom.DATASET_PATH , type=str)
+    parser.add_argument('--data_path', default= config_DETR.DATASET_PATH , type=str)
     parser.add_argument('--coco_panoptic_path', type=str)
     parser.add_argument('--remove_difficult', action='store_true')
 
-    parser.add_argument('--output_dir', default=config_DETR_multicom.BASE_OUTPUT,
+    parser.add_argument('--output_dir', default=config_DETR.BASE_OUTPUT,
                         help='path where to save, empty for no saving')
     parser.add_argument('--device', default='cuda',
                         help='device to use for training / testing')
     parser.add_argument('--seed', default=42, type=int)
-    parser.add_argument('--resume', default=config_DETR_multicom.RESUME_PATH, help='resume from checkpoint')
+    parser.add_argument('--resume', default=config_DETR.RESUME_PATH, help='resume from checkpoint')
     parser.add_argument('--start_epoch', default=0, type=int, metavar='N',
                         help='start epoch')
     parser.add_argument('--eval', action='store_true')
@@ -242,7 +242,7 @@ def main(args):
                 (output_dir / 'eval').mkdir(exist_ok=True)
                 if "bbox" in coco_evaluator.coco_eval:
                     filenames = ['latest.pth']
-                    if epoch % 50 == 0:
+                    if epoch % 100 == 0:
                         filenames.append(f'{epoch:03}.pth')
                     for name in filenames:
                         torch.save(coco_evaluator.coco_eval["bbox"].eval,
